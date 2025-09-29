@@ -1,3 +1,5 @@
+const fileSystem = require('fs');
+
 if(!fileSystem.existsSync('./docs/blog3.txt')) {
     console.log('The file is being created...')
     fileSystem.writeFile('./docs/blog3.txt', '//This file will be used alongside while studying about streams and buffer !', () => {
@@ -7,5 +9,12 @@ if(!fileSystem.existsSync('./docs/blog3.txt')) {
     console.log('File blog3.txt arleady exist feel free to use it !!!')
 };
 
-const fileSystem = require('fs');
+const readStream = fileSystem.createReadStream('./docs/blog3.txt');
+const writeStream = fileSystem.createWriteStream('./docs/blog4.txt');
 
+readStream.on('data', (chunk) => {
+    console.log('-------------------- NEW CHUNK --------------------');
+    console.log(chunk);
+    writeStream.write('\nNEW CHUNK\n')
+    writeStream.write(chunk);
+}) 
