@@ -1,11 +1,11 @@
 const fileSystem = require('fs');
 
 // reading file
-fileSystem.readFile('./docs/blog1.txt', (error, data) => {
+fileSystem.readFile('./docs/blog1.txt', { encoding: 'utf8' }, (error, data) => {
     if(error) {
         console.log(error);
     }
-    console.log(data.toString());
+    console.log(data);
 })
 
 // writing files
@@ -43,7 +43,7 @@ if(!fileSystem.existsSync('./docs')) {
         console.log('New File created successfully')
     })
 } else {
-    fileSystem.unlink('./docs/newDocument.txt', (error) => {
+    fileSystem.unlink('./docs/newDocument.txt', (error) =>  {
         if(error) {
             console.log(error)
         }
