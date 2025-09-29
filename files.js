@@ -43,7 +43,7 @@ if(!fileSystem.existsSync('./docs')) {
         console.log('New File created successfully')
     })
 } else {
-    fileSystem.unlink('./docs/newDocument.txt', (error) => {
+    fileSystem.unlink('./docs/newDocument.txt', (error) =>  {
         if(error) {
             console.log(error)
         }
