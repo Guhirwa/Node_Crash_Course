@@ -12,9 +12,9 @@ if(!fileSystem.existsSync('./docs/blog3.txt')) {
 const readStream = fileSystem.createReadStream('./docs/blog3.txt');
 const writeStream = fileSystem.createWriteStream('./docs/blog4.txt');
 
-readStream.on('data', (chunk) => {
-    console.log('-------------------- NEW CHUNK --------------------');
-    console.log(chunk);
-    writeStream.write('\nNEW CHUNK\n')
-    writeStream.write(chunk);
-}) 
+// readStream.on('data', (chunk) => {
+//     writeStream.write('\n\n=============NEW CHUNK==============\n\n')
+//     writeStream.write(chunk);
+// });
+// PIPING
+readStream.pipe(writeStream);
