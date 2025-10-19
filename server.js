@@ -5,9 +5,10 @@ const server = http.createServer((request, responce) => {
 
 
     // set header content type
-    responce.setHeader('Content-Type', 'text/plain');
+    responce.setHeader('Content-Type', 'text/html');
 
-    responce.write('Hello Christian Guhirwa');
+    responce.write('<h1>Hello Christian Guhirwa</h1>');
+    responce.write('<p>Has anyone ever told you howmuch we love you ?</p>')
     responce.end();
 });
 
