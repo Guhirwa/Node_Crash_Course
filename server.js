@@ -1,4 +1,5 @@
 const http = require('http');
+const fileSystem = require('fs')
 
 const server = http.createServer((request, responce) => {
     console.log(request.url, request.method);
@@ -7,9 +8,17 @@ const server = http.createServer((request, responce) => {
     // set header content type
     responce.setHeader('Content-Type', 'text/html');
 
-    responce.write('<h1>Hello Christian Guhirwa</h1>');
-    responce.write('<p>Has anyone ever told you howmuch we love you ?</p>')
-    responce.end();
+    // send html file
+    fileSystem.readFile('./views/index.html', (error, data) => {
+        if(error) {
+            console.log(error);
+            responce.end()
+        } else {
+            responce.write(data);
+            responce.end();
+        }
+    })
+
 });
 
 server.listen(3002, 'localhost', () => {
