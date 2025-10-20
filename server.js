@@ -8,19 +8,32 @@ const server = http.createServer((request, responce) => {
     // set header content type
     responce.setHeader('Content-Type', 'text/html');
 
+    let path = './views/';
+    switch(request.url) {
+        case '/':
+            path += 'index.html';
+            break;
+        case './about':
+            path += 'about.html';
+            break;
+        default:
+            path += '404.html';
+            break; 
+    }
+
     // send html file
-    fileSystem.readFile('./views/index.html', (error, data) => {
+    fileSystem.readFile(path, (error, data) => {
         if(error) {
             console.log(error);
             responce.end()
         } else {
-            responce.write(data);
-            responce.end();
+            // responce.write(data); if we are passing only one data or readed page we can pass it dirrectly to the end()
+            responce.end(data);
         }
     })
 
 });
 
-server.listen(3002, 'localhost', () => {
-    console.log('listening for request on port 3002');
+server.listen(3000, 'localhost', () => {
+    console.log('listening for request on port 3000');
 });
