@@ -9,12 +9,7 @@ if(!fileSystem.existsSync('./docs/blog3.txt')) {
     console.log('File blog3.txt arleady exist feel free to use it !!!')
 };
 
-const readStream = fileSystem.createReadStream('./docs/blog3.txt');
-const writeStream = fileSystem.createWriteStream('./docs/blog4.txt');
+const readStream = fileSystem.createReadStream("./docs/blog4.txt");
+const writeStream = fileSystem.createWriteStream("./docs/blog11.txt");
 
-// readStream.on('data', (chunk) => {
-//     writeStream.write('\n\n=============NEW CHUNK==============\n\n')
-//     writeStream.write(chunk);
-// });
-// PIPING
 readStream.pipe(writeStream);

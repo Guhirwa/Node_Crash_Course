@@ -1,4 +1,4 @@
-const fileSystem = require('fs');
+/* const fileSystem = require('fs');
 
 // reading file
 fileSystem.readFile('./docs/blog1.txt', { encoding: 'utf8' }, (error, data) => {
@@ -49,4 +49,25 @@ if(!fileSystem.existsSync('./docs')) {
         }
         console.log('Deleted')
     })
-}
+} */
+
+/*
+const fileSystem = require('fs');
+
+let interval = 0;
+
+setTimeout(() => {
+    console.log("After 3 seconds");
+}, 3000);
+
+let int = setInterval(() => {
+    interval++;
+    console.log('After ' + interval + ' second(s)');
+    if(interval === 4){
+        clearInterval(int)
+        console.log('TimeOut')
+//     }
+// }, 1000);
+// */
+// console.log(__dirname);
+// console.log(__filename);
