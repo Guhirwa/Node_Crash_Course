@@ -18,6 +18,12 @@ const server = http.createServer((request, responce) => {
             path += 'about.html';
             responce.statusCode = 200;
             break;
+            // Redirect
+        case '/about-me/':
+            responce.statusCode = 301;
+            responce.setHeader('Location', '/about/');
+            responce.end()
+            break;
         default:
             path += '404.html';
             responce.statusCode = 404
