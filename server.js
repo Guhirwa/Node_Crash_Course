@@ -13,7 +13,7 @@ const server = http.createServer((request, responce) => {
         case '/':
             path += 'index.html';
             break;
-        case './about':
+        case '/about/':
             path += 'about.html';
             break;
         default:
