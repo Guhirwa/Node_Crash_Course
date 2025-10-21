@@ -1,8 +1,18 @@
 const http = require('http');
-const fileSystem = require('fs')
+const fileSystem = require('fs');
+const _ = require('lodash');
 
 const server = http.createServer((request, responce) => {
-    console.log(request.url, request.method);
+    
+    //lodash
+    const num = _.random(0, 20); 
+    console.log(num);
+
+    const greet = _.once(() => {
+        console.log('hello');
+    });
+    greet();
+
 
 
     // set header content type
@@ -28,7 +38,7 @@ const server = http.createServer((request, responce) => {
             path += '404.html';
             responce.statusCode = 404
             break; 
-    }
+    } 
 
     // send html file
     fileSystem.readFile(path, (error, data) => {
