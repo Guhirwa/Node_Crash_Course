@@ -23,6 +23,7 @@ app.get('/about-us', (request,responce) => {
     responce.redirect('/about');
 })
 
-
 // 404 page
-
+app.use((request, responce) => {
+    responce.sendFile('./views/404.html', { root: __dirname })
+})
