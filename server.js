@@ -38,7 +38,7 @@ const server = http.createServer((request, responce) => {
             path += '404.html';
             responce.statusCode = 404
             break; 
-    }
+    } 
 
     // send html file
     fileSystem.readFile(path, (error, data) => {
