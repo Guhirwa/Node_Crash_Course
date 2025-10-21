@@ -1,6 +1,4 @@
 const express = require('express');
-const fileSystem = require('fs');
-const { request } = require('http');
 
 // Express app
 const app = express();
@@ -18,6 +16,10 @@ app.get('/about', (request, responce) => {
 
 // redirects
 app.get('/about-me', (request, responce) => {
+    responce.redirect('/about');
+})
+
+app.get('/about-us', (request,responce) => {
     responce.redirect('/about');
 })
 
