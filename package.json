@@ -10,6 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "lodash": "^4.17.21",
+    "nodemon": "^3.1.11",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },
