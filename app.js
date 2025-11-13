@@ -13,11 +13,11 @@ app.set('view engine', 'ejs');
 app.listen(3000);
 
 app.get('/', (request, responce) => {
-    responce.render('index');
+    responce.render('index', { title: "Home" });
 });
 
 app.get('/about', (request, responce) => {
-    responce.render('about');
+    responce.render('about', { title: "Home" });
 });
 
 app.get('/blogs/create', (request, responce) => {
