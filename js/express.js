@@ -1,6 +1,6 @@
-let http = require('http');
+import { createServer } from "node:http";
 
-http.createServer((req, res) => {
+createServer((req, res) => {
     res.writeHead(200, {"content-type": 'text/html'})
     res.end('Christian Guhirwa');
 }).listen(8080)

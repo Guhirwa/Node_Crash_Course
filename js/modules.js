@@ -1,6 +1,6 @@
-const { people, ages } = require('./people');
+import { people } from './people';
+import {os} from 'node:os'
 
 console.log(people);
 
-const os = require('os')
-console.log(os.platform(), os.hostname(), os.homedir())
+console.log(os.platform(), os.hostname(), os.homedir());

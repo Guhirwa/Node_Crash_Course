@@ -1,14 +1,14 @@
-const http = require('http');
-const fileSystem = require('fs');
-const _ = require('lodash');
+import { createServer } from 'node:http';
+import { readFile } from 'node:fs';
+import { random, once } from 'lodash';
 
-const server = http.createServer((request, responce) => {
+const server = createServer((request, responce) => {
     
     //lodash
-    const num = _.random(0, 20); 
+    const num = random(0, 20); 
     console.log(num);
 
-    const greet = _.once(() => {
+    const greet = once(() => {
         console.log('hello');
     });
     greet();
@@ -41,7 +41,7 @@ const server = http.createServer((request, responce) => {
     } 
 
     // send html file
-    fileSystem.readFile(path, (error, data) => {
+    readFile(path, (error, data) => {
         if(error) {
             console.log(error);
             responce.end()

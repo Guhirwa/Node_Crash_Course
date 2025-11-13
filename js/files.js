@@ -1,7 +1,7 @@
-const fileSystem = require('fs');
+import { readFile, writeFile, existsSync, mkdir, rmdir, unlink } from 'node:fs';
 
 // reading file
-fileSystem.readFile('./docs/blog1.txt', { encoding: 'utf8' }, (error, data) => {
+readFile('./docs/blog1.txt', { encoding: 'utf8' }, (error, data) => {
     if(error) {
         console.log(error);
     }
@@ -9,24 +9,24 @@ fileSystem.readFile('./docs/blog1.txt', { encoding: 'utf8' }, (error, data) => {
 })
 
 // writing files
-fileSystem.writeFile('./docs/blog1.txt', 'Hello Christian GUHIRWA we love you very much', () => {
+writeFile('./docs/blog1.txt', 'Hello Christian GUHIRWA we love you very much', () => {
     console.log('File content rewrited successful')
 })
 
-fileSystem.writeFile('./docs/blog2.txt', 'Hello new file...', () => {
+writeFile('./docs/blog2.txt', 'Hello new file...', () => {
     console.log('File created and written.')
 })
 
 // directories
-if(!fileSystem.existsSync('./assets')) {
-    fileSystem.mkdir('./assets',  (error) => {
+if(!existsSync('./assets')) {
+    mkdir('./assets',  (error) => {
     if(error) {
         console.log(error)
     }
     console.log('File created')
 })
 } else {
-    fileSystem.rmdir('./assets', (error) => {
+    rmdir('./assets', (error) => {
         if(error) {
             console.log(error)
         }
@@ -35,24 +35,21 @@ if(!fileSystem.existsSync('./assets')) {
 }
 
 // deleting files
-if(!fileSystem.existsSync('./docs')) {
-    fileSystem.writeFile('./docs/newDocument.txt', 'This will be deleted if exist and vice versa', (error) => {
+if(!existsSync('./docs')) {
+    writeFile('./docs/newDocument.txt', 'This will be deleted if exist and vice versa', (error) => {
         if(error) {
             console.log(error)
         }
         console.log('New File created successfully')
     })
 } else {
-    fileSystem.unlink('./docs/newDocument.txt', (error) =>  {
+    unlink('./docs/newDocument.txt', (error) =>  {
         if(error) {
             console.log(error)
         }
         console.log('Deleted')
     })
 }
-
-
-const fileSystem = require('fs');
 
 let interval = 0;
 
@@ -68,6 +65,3 @@ let int = setInterval(() => {
         console.log('TimeOut')
     }
 }, 1000);
-
-console.log(__dirname);
-console.log(__filename);
