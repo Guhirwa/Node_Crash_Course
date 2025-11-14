@@ -3,6 +3,8 @@ import express from 'express'
 // Express app
 const app = express();
 
+app.use(express.static("dist"))
+
 // register view engine
 app.set('view engine', 'ejs');
 
@@ -13,15 +15,20 @@ app.set('view engine', 'ejs');
 app.listen(3000);
 
 app.get('/', (request, responce) => {
-    responce.render('index', { title: "Home" });
+    const blogs = [
+        {title: 'Christian finds eggs', snippet: 'Lorem ipsum dolor sit amet consectetur'},
+        {title: 'Guhirwa finds stars', snippet: 'Lorem ipsum dolor sit amet consectetur'},
+        {title: 'How to defeat bowser', snippet: 'Lorem ipsum dolor sit amet consectetur'}
+    ];
+    responce.render('index', { title: "Home", blogs });
 });
 
 app.get('/about', (request, responce) => {
-    responce.render('about', { title: "Home" });
+    responce.render('about', { title: "About" });
 });
 
 app.get('/blogs/create', (request, responce) => {
-    responce.render('create');
+    responce.render('create', {title: 'Create'});
 });
 
 // redirects
@@ -35,5 +42,5 @@ app.get('/about-us', (request,responce) => {
 
 // 404 page
 app.use((request, responce) => {
-    responce.status(404).render('404');
+    responce.status(404).render('404', {title: 'notFound'});
 });
