@@ -3,6 +3,8 @@ import express from 'express'
 // Express app
 const app = express();
 
+app.use(express.static("dist"))
+
 // register view engine
 app.set('view engine', 'ejs');
 
