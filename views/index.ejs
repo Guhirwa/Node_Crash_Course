@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <link rel="stylesheet" href="../dist/index.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Ninja | <%= title %></title>
-</head>
+<%- include('../partials/head.ejs') %>
 <body>
 
     <%- include('../partials/nav.ejs') %>
@@ -19,7 +14,8 @@
           <% }) %>
        <% } else { %>
             <h4>---- No blogs at the moment ----</h4>
-       <% }%>
+       <% } %>
     </div>
+    <%- include('../partials/footer.ejs') %>
 </body>
 </html>
