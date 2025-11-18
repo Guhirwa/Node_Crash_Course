@@ -1,5 +1,7 @@
 const express = require('express');
-const morgan = require('morgan')
+const morgan = require('morgan');
+const cors = require('cors');
+const helmet = require('helmet')
 
 // Express app
 const app = express();
@@ -15,18 +17,9 @@ app.set('view engine', 'ejs');
 // listen for request
 app.listen(3000);
 
-app.use((request, response, next) => {
-    console.log('new request made');
-    console.log('host: ', request.hostname);
-    console.log('path: ', request.path);
-    console.log('method: ', request.method);
-    next();
-});
-
-app.use((request,response, next) => {
-    console.log('in the next request')
-    next();
-});
+app.use(morgan('dev'));
+app.use(cors());
+app.use(helmet());
 
 app.get('/', (request, responce) => {
     const blogs = [
