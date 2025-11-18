@@ -20,7 +20,12 @@ app.use((request, response, next) => {
     console.log('path: ', request.path);
     console.log('method: ', request.method);
     next();
-})
+});
+
+app.use((request,response, next) => {
+    console.log('in the next request')
+    next();
+});
 
 app.get('/', (request, responce) => {
     const blogs = [
