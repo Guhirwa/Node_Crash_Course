@@ -1,4 +1,4 @@
-import express from 'express'
+const express = require('express');
 
 // Express app
 const app = express();
@@ -13,6 +13,14 @@ app.set('view engine', 'ejs');
 
 // listen for request
 app.listen(3000);
+
+app.use((request, response, next) => {
+    console.log('new request made');
+    console.log('host: ', request.hostname);
+    console.log('path: ', request.path);
+    console.log('method: ', request.method);
+    next();
+})
 
 app.get('/', (request, responce) => {
     const blogs = [
