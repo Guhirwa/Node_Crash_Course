@@ -6,6 +6,7 @@ const helmet = require('helmet')
 // Express app
 const app = express();
 
+// configure static files and assets that will be used in the app
 app.use(express.static("dist"))
 
 // register view engine
@@ -16,6 +17,8 @@ app.set('view engine', 'ejs');
 
 // listen for request
 app.listen(3000);
+
+app.use(express.static('public'))
 
 app.use(morgan('dev'));
 app.use(cors());
