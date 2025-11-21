@@ -24,7 +24,8 @@ app.set('view engine', 'ejs');
 
 // listen for request
 
-app.use(express.static('public'))
+app.use(express.static('public'));
+app.use(express.urlencoded({extended: true}))
 
 app.use(morgan('dev'));
 app.use(cors());
@@ -42,6 +43,14 @@ app.get('/about', (request, responce) => {
 app.get('/blogs/create', (request, responce) => {
     responce.render('create', {title: 'Create'});
 });
+
+app.post('/blogs', (request, response) => {
+    
+    const blog = new Blog(request.body);
+    blog.save()
+        .then(result => response.redirect('/blogs'))
+        .catch(error => console.log(error))
+})
 
 // redirects
 app.get('/about-me', (request, responce) => {
