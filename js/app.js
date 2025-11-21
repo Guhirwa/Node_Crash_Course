@@ -33,7 +33,7 @@ app.use(helmet());
 // mongoose and mongo sandbox routes
 app.get('/add-blog', (request, response) => {
     const blog = new Blog({
-        title: 'new blog',
+        title: 'new blog 2',
         snippet: 'about my new blog',
         body: 'more about my new blog'
     });
@@ -43,6 +43,20 @@ app.get('/add-blog', (request, response) => {
             response.send(result)
         })
         .catch(error => console.log(error));
+})
+
+app.get('/all-blogs', (request, response) => {
+    Blog.find()
+        .then(result => {
+            response.send(result);
+        })
+        .catch(error => console.log(error))
+})
+
+app.get('/single-blog',(request,response) => {
+    Blog.findById('692041d272871f689f42375f')
+        .then(result => response.send(result))
+        .catch(error => console.log(error))
 })
 
 
