@@ -2,12 +2,18 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const helmet = require('helmet')
+const mongoose = require('mongoose')
 
 // Express app
 const app = express();
 
+// connect to mongodb
+const dbURI = 'mongodb+srv://netninja:test1234@itstudentmdb.0dz73ax.mongodb.net/node-tuts?appName=ItStudentMdb';
+mongoose.connect(dbURI)
+    .then(result => app.listen(3000))
+    .catch((error) => console.log(error));
 // configure static files and assets that will be used in the app
-app.use(express.static("dist"))
+// app.use(express.static("dist"))
 
 // register view engine
 app.set('view engine', 'ejs');
@@ -16,7 +22,6 @@ app.set('view engine', 'ejs');
 // app.set('views', 'myviews');
 
 // listen for request
-app.listen(3000);
 
 app.use(express.static('public'))
 
