@@ -3,6 +3,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 const helmet = require('helmet')
 const mongoose = require('mongoose')
+const Blog = require('../models/blogs');
 
 // Express app
 const app = express();
@@ -28,6 +29,22 @@ app.use(express.static('public'))
 app.use(morgan('dev'));
 app.use(cors());
 app.use(helmet());
+
+// mongoose and mongo sandbox routes
+app.get('/add-blog', (request, response) => {
+    const blog = new Blog({
+        title: 'new blog',
+        snippet: 'about my new blog',
+        body: 'more about my new blog'
+    });
+
+    blog.save()
+        .then(result => {
+            response.send(result)
+        })
+        .catch(error => console.log(error));
+})
+
 
 app.get('/', (request, responce) => {
     const blogs = [
