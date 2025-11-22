@@ -4,6 +4,7 @@ const cors = require('cors');
 const helmet = require('helmet')
 const mongoose = require('mongoose')
 const Blog = require('../models/blogs');
+const { render } = require('ejs');
 
 // Express app
 const app = express();
@@ -44,11 +45,20 @@ app.get('/blogs/create', (request, responce) => {
     responce.render('create', {title: 'Create'});
 });
 
+// post method for sending a new request so that it can be saved
 app.post('/blogs', (request, response) => {
     
     const blog = new Blog(request.body);
     blog.save()
         .then(result => response.redirect('/blogs'))
+        .catch(error => console.log(error))
+})
+
+app.get('/blogs/:id', (request, response) => {
+
+    const id = request.params.id;
+    Blog.findById(id)
+        .then(result => response.render('details', {blog: result, title: 'Blog Details'}))
         .catch(error => console.log(error))
 })
 

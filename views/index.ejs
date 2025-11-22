@@ -9,12 +9,13 @@
         <h2>All Blogs</h2>
        <% if(blogs.length > 0) { 
             blogs.map(blog => { %>
-                <h2><%= blog.title%></h2>
-                <h4><%= blog.snippet %></h4>
-                <p><%= blog.body %></p>
+                <a href="/blogs/<%= blog._id %>">
+                    <h2><%= blog.title%></h2>
+                    <h4><%= blog.snippet %></h4>
+                </a>
            <% })
         } else {
-            %> <h4>---- NO BLOG YET ----</h4> <%
+            %> <p>---- NO BLOG YET ----</p> <%
         }%>
     </div>
     <%- include('./partials/footer.ejs') %>
