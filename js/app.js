@@ -4,7 +4,6 @@ const cors = require('cors');
 const helmet = require('helmet')
 const mongoose = require('mongoose')
 const Blog = require('../models/blogs');
-const { render } = require('ejs');
 
 // Express app
 const app = express();
@@ -59,7 +58,7 @@ app.get('/blogs/:id', (request, response) => {
     const id = request.params.id;
     Blog.findById(id)
         .then(result => response.render('details', {blog: result, title: 'Blog Details'}))
-        .catch(error => console.log(error))
+        .catch(error => response.status(404).render('404', {title: 'Blog Not Found'}))
 })
 
 // redirects
