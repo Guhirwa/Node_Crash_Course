@@ -9,9 +9,11 @@
         <div class="content">
             <p><%= blog.body %></p>
         </div>
-        <button><a href=""></a></button>
+        <button><a id="delete" data-doc = "<%= blog._id %>">Delete</a></button>
     </div>
 
     <%- include('./partials/footer.ejs') %>
+
+    <script src="/js/delete.js"></script>
 </body>
 </html>

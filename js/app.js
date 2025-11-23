@@ -61,6 +61,16 @@ app.get('/blogs/:id', (request, response) => {
         .catch(error => response.status(404).render('404', {title: 'Blog Not Found'}))
 })
 
+app.delete('/blogs/:id', (request, response) => {
+    const id = request.params.id;
+
+    Blog.findByIdAndDelete(id)
+        .then((result) => {
+            response.json({ redirect: '/blogs' });
+        })
+        .catch(error => console.log(error))
+})
+
 // redirects
 app.get('/about-me', (request, responce) => {
     responce.redirect('/about');
