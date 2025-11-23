@@ -1,9 +1,9 @@
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
-const helmet = require('helmet')
-const mongoose = require('mongoose')
-const Blog = require('../models/blogs');
+const helmet = require('helmet');
+const mongoose = require('mongoose');
+const blogRoutes = require('./routes/blogRoutes');
 
 // Express app
 const app = express();
@@ -40,37 +40,6 @@ app.get('/about', (request, responce) => {
     responce.render('about', { title: "About" });
 });
 
-app.get('/blogs/create', (request, responce) => {
-    responce.render('create', {title: 'Create'});
-});
-
-// post method for sending a new request so that it can be saved
-app.post('/blogs', (request, response) => {
-    
-    const blog = new Blog(request.body);
-    blog.save()
-        .then(result => response.redirect('/blogs'))
-        .catch(error => console.log(error))
-})
-
-app.get('/blogs/:id', (request, response) => {
-
-    const id = request.params.id;
-    Blog.findById(id)
-        .then(result => response.render('details', {blog: result, title: 'Blog Details'}))
-        .catch(error => response.status(404).render('404', {title: 'Blog Not Found'}))
-})
-
-app.delete('/blogs/:id', (request, response) => {
-    const id = request.params.id;
-
-    Blog.findByIdAndDelete(id)
-        .then((result) => {
-            response.json({ redirect: '/blogs' });
-        })
-        .catch(error => console.log(error))
-})
-
 // redirects
 app.get('/about-me', (request, responce) => {
     responce.redirect('/about');
@@ -81,13 +50,7 @@ app.get('/about-us', (request,responce) => {
 });
 
 // blog routes
-app.get('/blogs', (request, response) => {
-
-    Blog.find().sort({createdAt: - 1})
-        .then(result => {
-            response.render('index', {title: 'All Blogs', blogs: result})
-        })
-})
+app.use('/blogs', blogRoutes);
 
 // 404 page
 app.use((request, responce) => {
